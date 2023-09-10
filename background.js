@@ -184,6 +184,7 @@ async function updateRootMenuItem(bookmarkId) {
 
 async function updateBookmarkMenuItems() {
     let cids = await browser.contextualIdentities.query({});
+    cids.sort((a, b) => a.name.localeCompare(b.name));
     if (cids.length === lastIds.length &&
         lastIds.every((id, i) => id === cids[i].cookieStoreId)) {
         // No change.
